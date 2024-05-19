@@ -14,11 +14,27 @@ const router = createRouter({
       name: 'login',
       component: () => import('@/views/LoginView.vue')
     },
+    ,
+    {
+      path: '/postview',
+      name: 'postview',
+      component: () => import('@/views/PostView.vue')
+    },
     {
       path: '/signup',
       name: 'signup',
       component: () => import('@/views/SignupView.vue')
     },
+    {
+      path: '/recommand',
+      name: 'recommand',
+      component: () => import('@/views/RecommandView.vue')
+    },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: () => import('@/views/UploadView.vue')
+    }
     // {
     //   path: '/about',
     //   name: 'about',

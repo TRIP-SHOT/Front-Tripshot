@@ -30,7 +30,7 @@ const goToSignup = () => {
               </div>
               <div class="button-login-box">
                 <button type="submit" class="btn btn-primary btn-block" style="border-radius: 10px;">로그인</button>
-                <button type="submit" class="btn btn-primary btn-block" style="border-radius: 10px;" @click="goToSignup">회원가입</button>
+                <button type="button" class="btn btn-primary btn-block" style="border-radius: 10px;" @click="goToSignup">회원가입</button>
             </div>
             </form>
           </div>
