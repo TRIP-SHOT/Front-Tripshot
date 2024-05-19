@@ -34,7 +34,28 @@ const router = createRouter({
       path: '/upload',
       name: 'upload',
       component: () => import('@/views/UploadView.vue')
-    }
+    },
+    {
+      path: '/imgload',
+      name: 'imgload',
+      component: () => import('@/components/uploadStep/ImgLoad.vue')
+    },
+    {
+      path: '/placeload',
+      name: 'placeload',
+      component: () => import('@/components/uploadStep/PlaceLoad.vue')
+    },
+    {
+      path: '/dateload',
+      name: 'dateload',
+      component: () => import('@/components/uploadStep/DateLoad.vue')
+    },
+    {
+      path: '/contentload',
+      name: 'contentload',
+      component: () => import('@/components/uploadStep/ContentLoad.vue')
+    },
+    
     // {
     //   path: '/about',
     //   name: 'about',

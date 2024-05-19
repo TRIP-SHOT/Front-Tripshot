@@ -4,8 +4,8 @@
 import axios from "axios"
 
 export default axios.create({
-    baseURL: "http://localhost",     
+    baseURL: "http://3.37.57.139:8080",     
     headers:{
-        "Content-Type" : "application/json"
+        "Content-Type" : "multipart/form-data"
     }
 })
