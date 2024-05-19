@@ -3,20 +3,21 @@
 
 <template>
   <div>
+    <h4 class="mb-3 text-center">회원가입</h4>
     <div class="container">
       <div class="input-form-background row">
         <div class="input-form col-md-7 mx-auto my-auto mb-5">
-          <h4 class="mb-3">회원가입</h4>
+          
           <form class="validation-form">
             <div class="mb-3">
-              <label for="name">이름</label>
-              <input type="text" class="form-control" id="name" placeholder="" required>
-              <div class="invalid-feedback">이름을 입력해주세요.</div>
+              <label for="nickname">아이디</label>
+              <input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요." required>
+              <div class="invalid-feedback">아이디를 입력해주세요.</div>
             </div>
             <div class="mb-3">
-              <label for="nickname">아이디</label>
-              <input type="text" class="form-control" id="id" placeholder="" required>
-              <div class="invalid-feedback">아이디를 입력해주세요.</div>
+              <label for="name">닉네임</label>
+              <input type="text" class="form-control" id="name" placeholder="닉네임을 입력해주세요." required>
+              <div class="invalid-feedback">이름을 입력해주세요.</div>
             </div>
             <div class="mb-3">
               <label for="password">비밀번호</label>
@@ -48,28 +49,28 @@
 
 <style scoped>
 .input-form-background {
-  background-color: #f8f9fa; /* 배경색 설정 */
-  padding: 40px; /* 내부 여백 설정 */
+  background-color: #f8f9fa; 
+  padding: 40px; 
 }
 
 .input-form {
-  border-radius: 10px; /* 폼 테두리 모서리 설정 */
-  background-color: white; /* 폼 배경색 설정 */
-  padding: 30px; /* 폼 내부 여백 설정 */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  border-radius: 10px; 
+  background-color: white;
+  padding: 30px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .validation-form input[type="text"],
 .validation-form input[type="password"],
 .validation-form input[type="email"] {
-  border-radius: 10px; /* 입력 필드 테두리 모서리 설정 */
+  border-radius: 10px;
 }
 
 .custom-checkbox {
-  margin-top: 20px; /* 체크박스 상단 여백 설정 */
+  margin-top: 20px; 
 }
 
 .btn-primary {
-  border-radius: 10px; /* 버튼 모서리 설정 */
+  border-radius: 10px;
 }
 </style>

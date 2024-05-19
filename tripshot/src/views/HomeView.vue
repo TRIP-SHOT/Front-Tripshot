@@ -12,6 +12,6 @@ import Portfolios from "@/components/Portfolios.vue"
     <About/>
     <Services/>
     <Portfolios/>
-    <Contacts/>
+    <!-- <Contacts/> -->
   </div>
 </template>

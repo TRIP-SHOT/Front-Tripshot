@@ -3,7 +3,7 @@ import ThumbCard from './ThumbCard.vue';
 import {useRouter} from 'vue-router';
 const router = useRouter()
 const goToPost = () => {
-    router.push('/postboard');
+    router.push('/postview');
 }
 
 const portfolioItems = [
@@ -48,11 +48,10 @@ const portfolioItems = [
 </script>
 
 <template>
-  <div class="d-flex justify-content-center align-items-center">
-    <h2 class="text-center mt-0">🏆 급상승 인증샷 🏆</h2>
-    <div @click="goToPost">
-        더보기
-        <i class="bi bi-chevron-double-right"></i>
+<div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
+    <div class="col-lg-8 text-center">
+        <h2 class="text-center mt-0">🏆 급상승 인증샷 🏆</h2>
+        <a class="btn btn-light btn-xl" @click="goToPost">더보기</a>
     </div>
 </div>
 
