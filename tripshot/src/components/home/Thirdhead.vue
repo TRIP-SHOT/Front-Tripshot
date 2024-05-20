@@ -8,7 +8,7 @@
             <hr class="divider divider-light" />
             <p class="text-white-75 mb-4">지도로 검색해보세요!</p>
             <div style="margin-top: 3rem;">
-              <KMap></KMap>
+              <RecommandKMap></RecommandKMap>
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
   </template>
   
   <script setup>
-  import KMap from './KMap.vue'
+  import RecommandKMap from '../RecommandKMap.vue'
   import { useRouter } from 'vue-router';
   const router = useRouter();
   

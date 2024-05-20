@@ -13,6 +13,9 @@ const goRecommand = () => {
 const goToLogin = () => {
   router.push('/login');
 };
+const goProofShot = () => {
+  router.push('/proofshot');
+};
 </script>
 
 <template>
@@ -26,9 +29,9 @@ const goToLogin = () => {
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <li class="nav-item"><a class="nav-link" @click="goHome">홈</a></li>
+                    <li class="nav-item"><a class="nav-link" @click="goProofShot">인증샷 지도</a></li>
                     <li class="nav-item"><a class="nav-link" @click="goBoard">인증샷 게시판</a></li>
                     <li class="nav-item"><a class="nav-link" @click="goRecommand">주변 관광지 추천</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#contact">인증샷 지도</a></li> -->
                     <li class="nav-item"><a class="nav-link" @click="goToLogin">로그인</a></li>
                 </ul>
                 </div>

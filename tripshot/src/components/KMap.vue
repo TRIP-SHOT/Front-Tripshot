@@ -1,49 +1,50 @@
 <script setup>
-import { KakaoMap, KakaoMapMarker } from 'vue3-kakao-maps';
-const coordinate = {
-  lat: 37.566826,
-  lng: 126.9786567
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { KakaoMap } from 'vue3-kakao-maps';
+
+const markerList = ref([
+  {
+    lat: "36.34",
+    lng: "127.77"
+  }
+]);
+
+
+
+const fetchMarkerData = async () => {
+  try {
+    const response = await axios.get('http://3.37.57.139:8080/boards');
+    if (response.data.status === 'OK') {
+      const data = response.data.data;
+      markerList.value = data.map(post => ({
+        lat: post.latitude,
+        lng: post.longitude,
+      }));
+      console.log("Marker list updated:", markerList.value);
+    } else {
+      console.error('데이터를 가져오는 중 오류 발생:', response.data.message);
+    }
+  } catch (error) {
+    console.error('데이터를 가져오는 중 오류 발생:', error);
+  }
 };
 
-const markerList = [
-  {
-    lat: 37.27943075229118,
-    lng: 127.01763998406159
-  },
-  {
-    lat: 37.55915668706214,
-    lng: 126.92536526611102
-  },
-  {
-    lat: 35.13854258261161,
-    lng: 129.1014781294671
-  },
-  {
-    lat: 37.55518388656961,
-    lng: 126.92926237742505
-  },
-  {
-    lat: 35.20618517638034,
-    lng: 129.07944301057026
-  },
-  {
-    lat: 37.561110808242056,
-    lng: 126.9831268386891
-  },
-  {
-    lat: 37.561110808242056,
-    lng: 126.9831268386891
-  },
-  {
-    lat: 37.561110808242056,
-    lng: 126.9831268386891
-  },
-];
+onMounted(() => {
+  fetchMarkerData();
+});
+
 </script>
 
 <template>
-  <KakaoMap :lat="36.34" :lng="127.77" :level="14" :markerCluster="{ markers: markerList }" />
-  <!-- <KakaoMap :lat="coordinate.lat" :lng="coordinate.lng" :draggable="true">
-    <KakaoMapMarker :lat="coordinate.lat" :lng="coordinate.lng"></KakaoMapMarker>
-  </KakaoMap> -->
+  <KakaoMap 
+    :lat="36.34" 
+    :lng="127.77" 
+    :level="14" 
+    :markerCluster="{ markers: markerList }" 
+  />
 </template>
+
+<style scoped>
+/* 스타일 정의 */
+</style>
