@@ -52,12 +52,10 @@ const portfolioItems = [
     <div class="col-lg-8 text-center">
         <h2 class="text-center mt-0">🏆 급상승 인증샷 🏆</h2>
         <a class="btn btn-light btn-xl" @click="goToPost">더보기</a>
+        <hr class="divider" />
     </div>
 </div>
 
-
-
-  <hr class="divider" />
     <!-- <div id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row g-0">
@@ -128,5 +126,10 @@ const portfolioItems = [
 </template>
 
 <style scoped>
-
+  .row{
+      width: 77.5rem;
+      margin: 0px auto;
+      padding: 5rem 0px 7.5rem;
+  }
+  
 </style>

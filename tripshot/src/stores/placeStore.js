@@ -4,7 +4,8 @@ export const usePlaceStore = defineStore('place', {
   state: () => ({
     latitude: 0,
     longitude: 0,
-    spot: '',
+    locationName: '',
+    spot: ''
   }),
   actions: {
     setLatitude(latitude) {
@@ -13,8 +14,11 @@ export const usePlaceStore = defineStore('place', {
     setLongitude(longitude) {
       this.longitude = longitude;
     },
+    setLocationName(locationName) {
+      this.locationName = locationName;
+    },
     setSpot(spot) {
       this.spot = spot;
-    },
+    }
   },
 });

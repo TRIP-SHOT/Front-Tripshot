@@ -11,7 +11,6 @@ const goToSignup = () => {
     <div>
 
       <main class="text-center">
-        <h4 class="mb-3">로그인</h4>
 
         <div id="container">
  

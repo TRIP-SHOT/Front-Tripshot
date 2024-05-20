@@ -1,7 +1,14 @@
 <template>
   <div class="row">
+    <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="text-black mt-0">🏖️ 인증샷 게시판 🏖️</h2>
+                    <hr class="divider divider-light" />
+                    <p class="text-black-75 mb-4">내 최고의 순간을 공유해보세요!</p>
+                </div>
+    </div>
     <a class="btn btn-light btn-xl" style="padding: 1.5rem; margin-bottom: 2rem;" @click="goToUpload">글쓰기</a>
-    <div class="col-md-3" v-for="(post, index) in displayedPosts" :key="index">
+    <div class="col-md-3" v-for="post in displayedPosts" :key="post.id">
       <PostBox :post="post" />
     </div>
     <nav aria-label="Page navigation example" class="d-flex justify-content-center">
@@ -28,26 +35,14 @@
 import { ref } from 'vue';
 import PostBox from '../components/PostBox.vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 const displayedPosts = ref([]);
 const itemsPerPage = 12; // 페이지당 표시할 게시물 수
-let currentPage = ref(1);
-const totalPosts = 14; // 전체 게시물 수
-const totalPages = Math.ceil(totalPosts / itemsPerPage);
-
-// 각 페이지에 표시할 게시물
-const posts = [];
-for (let i = 1; i <= totalPosts; i++) {
-  posts.push({ id: i, title: `Post ${i}` });
-}
-
-// 현재 페이지에 표시할 게시물 가져오기
-const getDisplayedPosts = () => {
-  const startIndex = (currentPage.value - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  displayedPosts.value = posts.slice(startIndex, endIndex);
-};
+const currentPage = ref(1);
+const totalPosts = ref(0); // 전체 게시물 수
+const totalPages = ref(0);
 
 // 페이지 변경
 const changePage = (page) => {
@@ -65,7 +60,7 @@ const prevPage = () => {
 
 // 다음 페이지로 이동
 const nextPage = () => {
-  if (currentPage.value < totalPages) {
+  if (currentPage.value < totalPages.value) {
     currentPage.value++;
     getDisplayedPosts();
   }
@@ -74,6 +69,22 @@ const nextPage = () => {
 // 글쓰기 페이지로 이동
 const goToUpload = () => {
   router.push('/upload');
+};
+
+// 게시물 데이터 가져오기
+const getDisplayedPosts = async () => {
+  try {
+    const response = await axios.get(`http://3.37.57.139:8080/boards?page=${currentPage.value}&size=${itemsPerPage}`);
+    if (response.data.status === 'OK') {
+      displayedPosts.value = response.data.data;
+      totalPosts.value = response.data.data.length;
+      totalPages.value = Math.ceil(totalPosts.value / itemsPerPage);
+    } else {
+      console.error("게시물 데이터를 가져오는 중 오류 발생:", response.data.message);
+    }
+  } catch (error) {
+    console.error("게시물 데이터를 가져오는 중 오류 발생:", error);
+  }
 };
 
 // 페이지 로드 시 첫 번째 페이지 게시물 가져오기

@@ -36,6 +36,11 @@ const router = createRouter({
       component: () => import('@/views/UploadView.vue')
     },
     {
+      path: '/proofshot',
+      name: 'proofshot',
+      component: () => import('@/views/ProofShotView.vue')
+    },
+    {
       path: '/imgload',
       name: 'imgload',
       component: () => import('@/components/uploadStep/ImgLoad.vue')
@@ -54,6 +59,11 @@ const router = createRouter({
       path: '/contentload',
       name: 'contentload',
       component: () => import('@/components/uploadStep/ContentLoad.vue')
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('@/views/PostDetailView.vue')
     },
     
     // {

@@ -34,13 +34,17 @@
   const weather = ref('');
   
   const nextStep = () => {
-    dateStore.setShotDate(shotDate.value); // Store에 날짜 임시 저장
-    dateStore.setSeason(season.value); // Store에 계절 태그 임시 저장
-    dateStore.setWeather(weather.value); // Store에 날씨 태그 임시 저장
-    console.log("날짜 저장" + shotDate.value + season.value + weather.value);
-    // 다음 단계로 이동
+
+  if (shotDate.value && season.value && weather.value) {
+    dateStore.setShotDate(shotDate.value); 
+    dateStore.setSeason(season.value);
+    dateStore.setWeather(weather.value);
+    // console.log("날짜 저장:", shotDate.value, "계절:", season.value, "날씨:", weather.value);
     router.push('/contentload');
-  };
+  } else {
+    alert('모든 정보를 입력해주세요!');
+  }
+};
 </script>
 
 <style scoped>

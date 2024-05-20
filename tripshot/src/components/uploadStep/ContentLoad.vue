@@ -34,7 +34,7 @@ const submit = () => {
   contentStore.setTitle(title.value);
   contentStore.setContent(content.value);
 
-  console.log("content 저장 " + title.value + content.value)
+  // console.log("content 저장 " + title.value + content.value)
 
   //FormData에 임시 저장된 값들을 담기
   const formData = new FormData();
@@ -48,8 +48,9 @@ const submit = () => {
   formData.append('longitude', placeStore.longitude);
   formData.append('latitude', placeStore.latitude);
   formData.append('image', imgStore.imgFile);
-  formData.append('locationName',"미정")
+  formData.append('locationName', placeStore.locationName);
 
+  //FormData 출력
   console.log(...formData);
 
   axios.post('http://3.37.57.139:8080/boards', formData, {
@@ -65,7 +66,7 @@ const submit = () => {
   });
 
   alert('등록되었습니다!');
-  router.push({path: '/'});
+  router.push({path: '/postview'});
   
 };
 </script>

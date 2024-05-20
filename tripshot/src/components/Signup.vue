@@ -3,7 +3,6 @@
 
 <template>
   <div>
-    <h4 class="mb-3 text-center">회원가입</h4>
     <div class="container">
       <div class="input-form-background row">
         <div class="input-form col-md-7 mx-auto my-auto mb-5">

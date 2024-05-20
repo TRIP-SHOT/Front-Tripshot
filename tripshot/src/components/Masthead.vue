@@ -37,13 +37,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 110%;
+  height: 102%;
   object-fit: cover;
   z-index: -1;
 }
 
 .scroll-container {
-  height: 100px; 
+  height: 110px; 
   overflow-y: auto; 
   color: white;
 }
@@ -58,10 +58,10 @@
 
 @keyframes scrollAnimation {
   0% {
-    transform: translateY(-7px); 
+    transform: translateY(-5px); 
   }
   100% {
-    transform: translateY(7px); 
+    transform: translateY(5px); 
   }
 }
 

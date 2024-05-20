@@ -9,8 +9,8 @@ import Portfolios from "@/components/Portfolios.vue"
 <template>
   <div>
     <Masthead/>
-    <About/>
     <Services/>
+    <About/>
     <Portfolios/>
     <!-- <Contacts/> -->
   </div>
