@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import KMap from './KMap.vue'
+import KMap from '../KMap.vue'
 </script>
 
 <style scoped>

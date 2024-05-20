@@ -10,6 +10,8 @@ const markerList = ref([
   }
 ]);
 
+
+
 const fetchMarkerData = async () => {
   try {
     const response = await axios.get('http://3.37.57.139:8080/boards');

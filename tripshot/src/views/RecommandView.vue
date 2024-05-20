@@ -1,5 +1,5 @@
 <script setup>
-import KMap from '../components/KMap.vue'
+import RecommandKMap from '../components/RecommandKMap.vue'
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import KMap from '../components/KMap.vue'
                     <h2 class="text-black mt-0">🏖️ 주변 관광지 검색 🏖️</h2>
                     <hr class="divider divider-light" />
                     <p class="text-black-75 mb-4">내가 여행 갈 여행지의 관광지를 추천 받아보세요!</p>
-                    <div style="margin-top: 3rem;"><KMap></KMap></div>
+                    <div style="margin-top: 3rem;"><RecommandKMap></RecommandKMap></div>
                     
                 </div>
     </div>
