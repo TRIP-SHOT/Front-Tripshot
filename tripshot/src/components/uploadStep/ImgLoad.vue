@@ -39,7 +39,7 @@
   
   const nextStep = () => {
     if (imageFile.value) {
-      imgStore.setImgFile(imageFile.value); // 파일 형태로 Store에 저장
+      imgStore.setImgFile(imageFile.value);
       router.push('/placeload');
     } else {
       // 파일이 선택되지 않았을 경우 예외 처리

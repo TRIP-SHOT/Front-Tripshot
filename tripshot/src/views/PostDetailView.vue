@@ -4,7 +4,7 @@
         <h2 class="text-center mt-0">게시글 상세 내용</h2>
         <!-- 게시글 내용 표시 -->
         <div v-if="postData" class="mb-3">
-            <div class="form-group">
+            <!-- <div class="form-group">
             <label>제목:</label> <input type="text" class="form-control" id="title" v-model="title" />
             </div>
             <div class="form-group">
@@ -13,7 +13,7 @@
 
             <div class="form-group">
             <label>촬영일:</label> <input type="text" class="form-control" id="shotDate" v-model="shotDate" />
-            </div>
+            </div> -->
 
             <img :src="postData.image" alt="이미지" class="img-fluid">
             <h2>제목: {{ postData.title }}</h2>
@@ -39,6 +39,8 @@
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import axios from 'axios';
+  import uploadAxios from "../../utils/uploadAxios";
+  import dataAxios from "../../utils/dataAxios";
   
   const router = useRouter();
   const postData = ref(null);
@@ -47,7 +49,7 @@
   onMounted(async () => {
     const postId = router.currentRoute.value.params.id;
     try {
-      const response = await axios.get(`http://3.37.57.139:8080/boards/${postId}`);
+      const response = await uploadAxios.get(`/${postId}`);
       if (response.data.status === 'OK') {
         postData.value = response.data.data;
       } else {
@@ -58,13 +60,29 @@
     }
   });
 
-    function customerDelete() {
-        const postId = router.currentRoute.value.params.id;
-        axios.delete('http://3.37.57.139:8080/boards?id='+ postId, {
-            headers: {
-            'Content-Type' : 'multipart/form-data'
-            }
-        })
+  function customerDelete() {
+    const postId = router.currentRoute.value.params.id;
+    console.log(postId)
+    dataAxios.delete(`/boards`, {
+      params: { id: postId }
+      })
+      .then((res) => {
+          console.log("성공", res);
+          alert("삭제가 완료되었습니다.");
+          router.push("/postview");
+      })
+      .catch((res) => {
+          console.log("실패",res);
+      });
+
+  }
+
+    function customerUpdate(param) {
+        dataAxios.put('/boards',
+            param, 
+            {
+          }
+        )
         .then((res) => {
             console.log("성공", res);
             alert("삭제가 완료되었습니다.");
@@ -74,19 +92,7 @@
             console.log("실패",res);
         });
 
-}
-
-    function customerUpdate(param) {
-        axios.put('http://localhost/customers',
-            param, 
-            {
-                headers: {
-                    'Content-Type' : 'multipart/form-data'
-                    }
-            }
-        )
-        alert("수정이 완료되었습니다.");
-        router.push("/postview");
+        router.push("/upload");
 
     }
 

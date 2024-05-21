@@ -3,27 +3,26 @@
     <!-- Profile -->
     <div class="profile">
       <!-- 사용자 프로필 -->
-   
-        <div class="profile-img">
-          <template v-if="post.profileImgUrl">
-            <img :src="post.profileImgUrl" alt="이미지 정보 없음">
-          </template>
-          <template v-else>
-            <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
-          </template>
-        </div>
-        <div class = "profile-info">
+      <div class="profile-img">
+        <template v-if="post.profileImgUrl">
+          <img :src="post.profileImgUrl" alt="이미지 정보 없음">
+        </template>
+        <template v-else>
+          <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
+        </template>
+      </div>
+      <div class = "profile-info">
+      
+      <div class="profile-side">
+        <!-- 사용자 닉네임 -->
+        <p class="username">{{ post.nickname || '닉네임없음' }}</p>
+        <!-- 조회수 -->
+        <p class="username">{{ post.hit }}</p>
         
-        <div class="profile-side">
-          <!-- 사용자 닉네임 -->
-          <p class="username">{{ post.nickname || '닉네임없음' }}</p>
-          <!-- 조회수 -->
-          <p class="username">{{ post.hit }}</p>
-          
-          <!-- 게시글 하트 수 -->
-          <i class="bi" :class="{'bi-heart': !liked, 'bi-heart-fill': liked}" @click="toggleHeart"></i>
-          <p class="username">{{ post.heart_count || '0 Likes' }}</p>
-        </div>
+        <!-- 게시글 하트 수 -->
+        <i class="bi" :class="{'bi-heart': !liked, 'bi-heart-fill': liked}" @click="toggleHeart"></i>
+        <p class="username">{{ post.heart_count || '0 Likes' }}</p>
+      </div>
     
       <div class ="additional-info">
       <!-- 계절, 날씨 -->
@@ -55,9 +54,7 @@ import { defineProps } from 'vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
-
 const router = useRouter();
-
 const props = defineProps({
   post: {
     type: Object,

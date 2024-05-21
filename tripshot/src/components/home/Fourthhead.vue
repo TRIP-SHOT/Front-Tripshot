@@ -34,18 +34,10 @@
   </template>
   
   <script setup>
-  import axios from 'axios';
+  import dataAxios from '../../../utils/dataAxios';
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import PostBox from '../PostBox.vue';
-
-//   // 새로운 Axios 인스턴스 생성
-//   const instance = axios.create({
-//   baseURL: process.env.VUE_APP_API_URL, // baseURL 설정
-//   timeout: 5000, // 요청 타임아웃 설정 (옵션)
-//   headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } // 헤더 설정 (옵션)
-// });
-
   
   const router = useRouter();
   
@@ -58,7 +50,7 @@
   // 게시물 데이터 가져오기
   const getDisplayedPosts = async () => {
     try {
-      const response = await axios.get('http://3.37.57.139:8080/boards');
+      const response = await dataAxios.get('/boards');
       if (response.data.status === 'OK') {
         const allPosts = response.data.data.sort((a, b) => b.hit - a.hit); // hit 기준으로 내림차순 정렬
         for (let i = 0; i < allPosts.length; i += 3) {

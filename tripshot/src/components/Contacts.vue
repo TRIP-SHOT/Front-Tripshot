@@ -1,6 +1,4 @@
-<script setup>
 
-</script>
 
 <template>
     <div>
@@ -24,6 +22,10 @@
         </section>
     </div>
 </template>
+
+<script setup>
+
+</script>
 
 <style scoped>
 

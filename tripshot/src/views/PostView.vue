@@ -35,7 +35,8 @@
 import { ref } from 'vue';
 import PostBox from '../components/PostBox.vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import dataAxios from "../../utils/dataAxios";
+import axios from "axios";
 
 const router = useRouter();
 const displayedPosts = ref([]);
@@ -74,7 +75,7 @@ const goToUpload = () => {
 // 게시물 데이터 가져오기
 const getDisplayedPosts = async () => {
   try {
-    const response = await axios.get(`http://3.37.57.139:8080/boards?page=${currentPage.value}&size=${itemsPerPage}`);
+    const response = await dataAxios.get('/boards');
     if (response.data.status === 'OK') {
       displayedPosts.value = response.data.data;
       totalPosts.value = response.data.data.length;

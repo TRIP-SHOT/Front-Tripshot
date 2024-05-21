@@ -19,6 +19,12 @@
 
 <script setup>
 import KMap from '../KMap.vue'
+import { useRouter } from 'vue-router';
+  const router = useRouter();
+  
+  const goToPost = () => {
+    router.push('/proofshot');
+  };
 </script>
 
 <style scoped>

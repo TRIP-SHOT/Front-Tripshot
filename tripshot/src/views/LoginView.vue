@@ -1,11 +1,7 @@
-<script setup>
-import Login from "@/components/Login.vue"
-import Layout from "../components/layout/Layout.vue"
-</script>
-
 <template>
       <div class ="background">
       <div class = "row">
+        
             <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
                 <div class="col-lg-8 text-center">
                     <h2 class="text-white mt-0">🏖️ 로그인 🏖️</h2>
@@ -18,6 +14,12 @@ import Layout from "../components/layout/Layout.vue"
       </div>
 </div>
 </template>
+
+<script setup>
+import Login from "@/components/Login.vue"
+import Layout from "../components/layout/Layout.vue"
+</script>
+
 
 <style scoped>
 .row{

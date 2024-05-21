@@ -29,11 +29,8 @@ coverage
 
 *.tsbuildinfo
 
-
 # local env files
 .env
 .env.local
 .env.*.local=
 
-#api Key
-apikey.js
