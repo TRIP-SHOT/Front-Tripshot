@@ -19,7 +19,7 @@ import { useImgStore } from '@/stores/imgStore';
 import { usePlaceStore } from '@/stores/placeStore';
 
 import { useRouter } from "vue-router";
-import axios from 'axios';
+import uploadAxios from "../../../utils/uploadAxios";
 
 const router = useRouter(); 
 const contentStore = useContentStore();
@@ -53,11 +53,7 @@ const submit = () => {
   //FormData 출력
   console.log(...formData);
 
-  axios.post('http://3.37.57.139:8080/boards', formData, {
-    headers: {
-      'Content-Type' : 'multipart/form-data'
-    }
-  })
+  uploadAxios.post('', formData, {})
   .then((res) => {
     console.log("성공",res);
   })

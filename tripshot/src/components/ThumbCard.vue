@@ -1,12 +1,3 @@
-<script setup>
-// Props
-const projectName = String;
-const category = String;
-const imageFullsize = String;
-const imageThumbnail = String;
-
-</script>
-
 <template>
     <div class="col-lg-2 col-sm-6">
     <a class="portfolio-box" :href="imageFullsize" :title="projectName">
@@ -18,6 +9,15 @@ const imageThumbnail = String;
     </a>
   </div>
 </template>
+
+<script setup>
+
+  const projectName = String;
+  const category = String;
+  const imageFullsize = String;
+  const imageThumbnail = String;
+
+</script>
 
 <style scoped>
 

@@ -22,7 +22,7 @@
   const router = useRouter();
   
   const goToPost = () => {
-    router.push('/postboard');
+    router.push('/recommand');
   };
   
   </script>

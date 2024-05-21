@@ -1,23 +1,3 @@
-<script setup>
-import { useRouter } from 'vue-router';
-const router = useRouter();
-const goHome = () => {
-  router.push('/');
-};
-const goBoard = () => {
-  router.push('/postview');
-};
-const goRecommand = () => {
-  router.push('/recommand');
-};
-const goToLogin = () => {
-  router.push('/login');
-};
-const goProofShot = () => {
-  router.push('/proofshot');
-};
-</script>
-
 <template>
     <div id="page-top">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -38,7 +18,27 @@ const goProofShot = () => {
             </div>
         </nav>
     </div>
-  </template>
+</template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const goHome = () => {
+  router.push('/');
+};
+const goBoard = () => {
+  router.push('/postview');
+};
+const goRecommand = () => {
+  router.push('/recommand');
+};
+const goToLogin = () => {
+  router.push('/login');
+};
+const goProofShot = () => {
+  router.push('/proofshot');
+};
+</script>
 
 <style scoped>
 

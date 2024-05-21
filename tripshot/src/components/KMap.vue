@@ -1,7 +1,16 @@
+<template>
+  <KakaoMap 
+    :lat="36.34" 
+    :lng="127.77" 
+    :level="14" 
+    :markerCluster="{ markers: markerList }" 
+  />
+</template>
+
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import { KakaoMap } from 'vue3-kakao-maps';
+import dataAxios from '../../utils/dataAxios';
 
 const markerList = ref([
   {
@@ -10,11 +19,9 @@ const markerList = ref([
   }
 ]);
 
-
-
 const fetchMarkerData = async () => {
   try {
-    const response = await axios.get('http://3.37.57.139:8080/boards');
+    const response = await dataAxios.get('/boards');
     if (response.data.status === 'OK') {
       const data = response.data.data;
       markerList.value = data.map(post => ({
@@ -36,15 +43,8 @@ onMounted(() => {
 
 </script>
 
-<template>
-  <KakaoMap 
-    :lat="36.34" 
-    :lng="127.77" 
-    :level="14" 
-    :markerCluster="{ markers: markerList }" 
-  />
-</template>
+
 
 <style scoped>
-/* 스타일 정의 */
+
 </style>
