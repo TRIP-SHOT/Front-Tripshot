@@ -75,4 +75,11 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+
+@font-face {
+  font-family:'WavvePADO';
+  src: url('./assets/fonts/WavvePADO-Regular.otf') format('truetype');
+  font-weight: 20;
+}
+
 </style>

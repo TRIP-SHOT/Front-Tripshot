@@ -7,11 +7,11 @@
             <div id="inputBox" style="font-weight: bold;">
               <div class="input-form-box mb-3">
                 <span class="fw-bold">아이디</span>
-                <input type="text" class="form-control" v-model="userId">
+                <input type="text" class="form-control" v-model="userId" required>
               </div>
               <div class="input-form-box mb-3">
                 <span class="fw-bold">비밀번호</span>
-                <input type="password" class="form-control" v-model="password">
+                <input type="password" class="form-control" v-model="password" required>
               </div>
             </div>
             <div class="button-login-box">

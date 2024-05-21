@@ -7,8 +7,8 @@
             <h2 class="text-black mt-0">🏖️ 인증샷 지도 🏖️</h2>
             <a class="btn btn-light btn-xl" @click="goToPost">더보기</a>
             <hr class="divider divider-light" />
-            <p class="text-white-75 mb-4">사용자들이 올린 인증샷 개수를 확인해보세요!</p>
-            <div style="margin-top: 3rem;">
+            <p class="text-black-75 mb-4">사용자들이 올린 인증샷 개수를 확인해보세요!</p>
+            <div class="justify-content-center" style="margin-top: 3rem;">
               <KMap></KMap>
             </div>
           </div>
