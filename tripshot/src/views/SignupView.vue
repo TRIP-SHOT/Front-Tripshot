@@ -4,17 +4,17 @@ import Signup from "@/components/Signup.vue"
 
 <template>
   <div class = "background">
-  <div class = "row">
-    <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">🏖️ 회원가입 🏖️</h2>
-                    <hr class="divider divider-light" />
-                    <p class="text-white-75 mb-4">회원가입을 해주세요!</p>
-                </div>
-                <Signup></Signup>
-            </div>
+    <div class = "row">
+      <div class="gx-4 gx-lg-5 justify-content-center align-items-center">
+                  <div class="text-center">
+                      <h2 class="text-white mt-0 title">🏖️ 회원가입 🏖️</h2>
+                      <hr class="divider divider-light" />
+                      <p class="text-white-75 mb-4 semititle">회원가입을 해주세요!</p>
+                  </div>
+                  <Signup></Signup>
+              </div>
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -25,10 +25,19 @@ import Signup from "@/components/Signup.vue"
 }
 
 .background{
-      background-image: url('@/assets/background/back4.jpg');
+      background-image: url('@/assets/background/back11.jpg');
       background-size: cover;
       background-position: center;
       width: 100%;
 }
 
+.title{
+    font-size: 2.5rem;
+    font-family:'WavvePADO';
+  }
+
+  .semititle{
+    font-size: 1.5rem;
+    font-family:'WavvePADO';
+  }
 </style>

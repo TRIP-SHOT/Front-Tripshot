@@ -49,7 +49,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import authAxios from "../../utils/authAxios";
+import dataAxios from "../../utils/dataAxios";
 
 const router = useRouter();
 const userId = ref('');
@@ -76,7 +76,7 @@ const handleSignup = async (event) => {
   });
  
   try {
-    const response = await authAxios.post(`/join`, {
+    const response = await dataAxios.post(`/join`, {
       userId: userId.value,
       password: password.value,
       nickname: nickname.value,
@@ -98,7 +98,7 @@ const handleSignup = async (event) => {
 
 <style scoped>
 .input-form-background {
-  background-color: #f8f9fa; 
+  /* background-color: #f8f9fa;  */
   padding: 40px; 
 }
 

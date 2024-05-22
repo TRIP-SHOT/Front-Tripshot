@@ -2,9 +2,9 @@
   <div>
     <main class="mb-4">
       <div class="container-fluid px-4 px-lg-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="text-center">
+            <div class="recommendation-section">
               <div class="col-md-9 mx-auto">
                 <div class="alert alert-primary mt-3 text-center fw-bold"
                      role="alert"
@@ -92,7 +92,7 @@ const markers = [];
 
 const searchAttractions = async () => {
   try {
-    const response = await dataAxios.get('/search', {
+    const response = await dataAxios.get('/map/search', {
       params: {
         searchArea: searchArea.value,
         searchGugun: searchGugun.value,
@@ -112,7 +112,7 @@ const searchAttractions = async () => {
 const displayedSidos = ref([]);
 const getDisplayedSidos = async () => {
   try {
-    const response = await dataAxios.get('/sido');
+    const response = await dataAxios.get('/map/sido');
     if (response.data.status === 'OK') {
       displayedSidos.value = response.data.data;
     } else {
@@ -126,7 +126,7 @@ const getDisplayedSidos = async () => {
 const displayedGuguns = ref([]);
 const getDisplayedGuguns = async () => {
   try {
-    const response = await dataAxios.get('/gugun');
+    const response = await dataAxios.get('/map/gugun');
     if (response.data.status === 'OK') {
       displayedGuguns.value = response.data.data;
     } else {
@@ -182,7 +182,6 @@ const addMarkers = () => {
 };
 
 
-
 onMounted(() => {
   const script = document.createElement('script');
   script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_MAP_API_KEY}`;
@@ -219,4 +218,13 @@ onMounted(() => {
   max-height: 400px;
   overflow-y: auto;
 }
+
+.recommendation-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    }
+  
 </style>

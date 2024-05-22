@@ -3,15 +3,15 @@
     <main class="text-center">
       <div id="container">
         <div id="loginBox" class="mt-5 p-4 rounded" style="background-color: #f8f9fa;">
-          <form @submit="handleLogin">
+          <form @submit.prevent="handleLogin">
             <div id="inputBox" style="font-weight: bold;">
               <div class="input-form-box mb-3">
                 <span class="fw-bold">아이디</span>
-                <input type="text" class="form-control" v-model="userId" required>
+                <input type="text" class="form-control" v-model="credentials.userId" required>
               </div>
               <div class="input-form-box mb-3">
                 <span class="fw-bold">비밀번호</span>
-                <input type="password" class="form-control" v-model="password" required>
+                <input type="password" class="form-control" v-model="credentials.password" required>
               </div>
             </div>
             <div class="button-login-box">
@@ -33,17 +33,15 @@ import { ref } from 'vue';
 const router = useRouter();
 const authStore = useAuthStore();
 
-const userId = ref('');
-const password = ref('');
+const credentials = ref({ userId: '', password: '' });
 
 const goToSignup = () => {
   router.push('/signup');
 };
 
-const handleLogin = async (event) => {
-  event.preventDefault();
+const handleLogin = async () => {
   try {
-    await authStore.login({ userId: userId.value, password: password.value });
+    await authStore.login(credentials.value);
     router.push('/');
   } catch (error) {
     alert('로그인 실패');

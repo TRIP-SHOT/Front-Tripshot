@@ -41,6 +41,16 @@ const router = createRouter({
       component: () => import('@/views/ProofShotView.vue')
     },
     {
+      path: '/mypage',
+      name: 'mypage',
+      component: () => import('@/views/MypageView.vue')
+    },
+    {
+      path: '/myheart',
+      name: 'myheart',
+      component: () => import('@/views/HeartView.vue')
+    },
+    {
       path: '/imgload',
       name: 'imgload',
       component: () => import('@/components/uploadStep/ImgLoad.vue')
@@ -65,6 +75,8 @@ const router = createRouter({
       name: 'detail',
       component: () => import('@/views/PostDetailView.vue')
     },
+    
+  
     
     // {
     //   path: '/about',

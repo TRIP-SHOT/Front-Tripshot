@@ -1,7 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Layout from "./components/layout/Layout.vue";
+import { useAuthStore } from "./stores/auth";
 
+const authStore = useAuthStore();
+authStore.initializeAuth();
 </script>
 
 <template>
