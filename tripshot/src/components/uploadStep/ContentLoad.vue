@@ -56,12 +56,12 @@ const submit = () => {
   uploadAxios.post('', formData, {})
   .then((res) => {
     console.log("성공",res);
+    alert('게시물이 등록되었습니다!');
   })
   .catch((res) => {
     console.log("실패",res);
   });
 
-  alert('등록되었습니다!');
   router.push({path: '/postview'});
   
 };

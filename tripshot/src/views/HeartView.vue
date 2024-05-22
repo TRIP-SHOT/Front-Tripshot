@@ -7,7 +7,7 @@
                       <hr class="divider divider-light" />
                       <p class="text-white-75 mb-4 semititle">내가 ♥한 게시물 목록</p>
                   </div>
-      
+      </div>
       <div class="col-md-3" v-for="post in displayedPosts" :key="post.id">
         <PostBox :post="post" />
       </div>
@@ -30,15 +30,13 @@
       </nav>
     </div>
   </div>
-  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import PostBox from '../components/PostBox.vue';
 import { useRouter } from 'vue-router';
-import dataAxios from "../../utils/dataAxios";
-import axios from "axios";
+import authAxios from '../../utils/authAxios';
 
 const router = useRouter();
 const displayedPosts = ref([]);
@@ -72,7 +70,7 @@ const nextPage = () => {
 // 게시물 데이터 가져오기
 const getDisplayedPosts = async () => {
   try {
-    const response = await dataAxios.get('/boards');
+    const response = await authAxios.get('/boards/hearts');
     if (response.data.status === 'OK') {
       displayedPosts.value = response.data.data;
       totalPosts.value = response.data.data.length;

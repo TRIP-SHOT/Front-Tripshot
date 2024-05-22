@@ -12,16 +12,16 @@
         </template>
       </div>
       <div class = "profile-info">
-      
+      <!-- 사용자 닉네임 -->
+      <p class="username">{{ post.nickname || '닉네임없음' }}</p>
       <div class="profile-side">
-        <!-- 사용자 닉네임 -->
-        <p class="username">{{ post.nickname || '닉네임없음' }}</p>
+        
         <!-- 조회수 -->
-        <p class="username">{{ post.hit }}</p>
+        <p class="hit">{{ post.hit }}</p>
         
         <!-- 게시글 하트 수 -->
-        <i class="bi" :class="{'bi-heart': !liked, 'bi-heart-fill': liked}" @click="toggleHeart"></i>
-        <p class="username">{{ post.heart_count || '0 Likes' }}</p>
+        <i class="bi" :class="{'bi-heart': !postState.isLike, 'bi-heart-fill': postState.isLike}" @click="toggleHeart"></i>
+        <p class="heartfill">{{ postState.heartCount }} Likes </p>
       </div>
     
       <div class ="additional-info">
@@ -50,9 +50,10 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+import authAxios from '../../utils/authAxios';
 
 const router = useRouter();
 const props = defineProps({
@@ -65,14 +66,29 @@ const props = defineProps({
 const goToPostDetail = (postId) => {
   router.push({ name: 'detail', params: { id: postId } });
 };
-const liked = ref(false); // 하트 토글 상태
-const toggleHeart = () => {
-  // 하트 토글
-  liked.value = !liked.value;
-  if (liked.value) {
-    console.log("!!")
+
+const postState = reactive({
+  isLike: props.post.isLike,
+  heartCount: props.post.heartCount
+});
+
+function toggleHeart() {
+    authAxios.post(`/boards/heart`, null,{
+      params: { id: props.post.id }
+      })
+      .then((res) => {
+        postState.isLike = !postState.isLike; // 하트 상태를 토글
+        postState.heartCount += postState.isLike ? 1 : -1; // 하트 수 업데이트
+        // console.log('하트 상태가 변경되었습니다.',res);
+      })
+      .catch((res) => {
+        console.error('하트 상태 변경 error:', res);
+      });
+
   }
-};
+
+
+
 </script>
 
 <style scoped>
@@ -85,6 +101,7 @@ const toggleHeart = () => {
 .profile-side {
   display: flex;
   justify-content: space-between;
+  align-items: top;
 }
 
 /* 프로필 사진 */
@@ -92,7 +109,7 @@ const toggleHeart = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 /* 프로필 정보 */
@@ -102,10 +119,14 @@ const toggleHeart = () => {
   gap: 5px;
 }
 
-/* 하트 */
 .username {
   display: flex;
   justify-content: space-between;
+}
+
+/* 하트 */
+.heartfill{
+  display: flex;
 }
 
 /* 날짜와 계절, 날씨 태그 */

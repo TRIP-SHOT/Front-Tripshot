@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.11.3",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
     "dotenv-webpack": "^8.1.0",
+    "sass": "^1.77.2",
     "vite": "^5.2.8",
     "vite-plugin-env-compatible": "^2.0.1",
     "vite-plugin-vue-devtools": "^7.0.25"

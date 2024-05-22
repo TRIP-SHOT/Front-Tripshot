@@ -15,6 +15,7 @@ export const useAuthStore = defineStore('auth', {
           this.token = token;
           localStorage.setItem('token', this.token);
           authAxios.defaults.headers.common['Authorization'] = `${this.token}`;
+          console.log("여기"+token);
         } else {
           throw new Error('Token not found in response headers');
         }
