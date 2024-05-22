@@ -2,11 +2,11 @@
       <div class ="background">
       <div class = "row">
         
-            <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">🏖️ 로그인 🏖️</h2>
+            <div class="gx-4 gx-lg-5 justify-content-center align-items-center">
+                <div class="text-center">
+                    <h2 class="text-dark mt-0 title">🏖️ 로그인 🏖️</h2>
                     <hr class="divider divider-light" />
-                    <p class="text-white-75 mb-4">로그인을 해주세요!</p>
+                    <p class="text-dark-75 mb-4 semititle">로그인을 해주세요!</p>
                 </div>
                 <Login></Login>
             </div>
@@ -31,9 +31,19 @@ import Layout from "../components/layout/Layout.vue"
 
 .background {
   position: relative;
-  background-image: url('@/assets/background/back1.jpg');
+  background-image: url('@/assets/background/back9.jpg');
   background-size: cover;
   background-position: center;
 }
+
+.title{
+    font-size: 2.5rem;
+    font-family:'WavvePADO';
+  }
+
+  .semititle{
+    font-size: 1.5rem;
+    font-family:'WavvePADO';
+  }
 
 </style>

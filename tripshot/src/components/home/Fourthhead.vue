@@ -1,16 +1,18 @@
 <template>
+  <div class ="masthead">
+    <section class="page-section bg-dark" id="about">
     <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
       <div class="col-lg-8 text-center">
-        <h2 class="text-center mt-0">🏆 급상승 인증샷 🏆</h2>
-        <a class="btn btn-light btn-xl" @click="goToPost">더보기</a>
+        <h2 class="text-center mt-0 text-white-75 title">🏆 급상승 인증샷 🏆</h2>
+        <a class="btn btn-light btn-xl semititle" @click="goToPost">더보기</a>
         <hr class="divider" />
-        <p class="text-black-75 mb-4">가장 조회수가 높은 인증샷을 확인해보세요!</p>
+        <p class="text-black-75 mb-4 text-white-75 semititle">가장 조회수가 높은 인증샷을 확인해보세요!</p>
       </div>
       <div id="carouselExampleControls" class="carousel slide col-lg-8" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
           <div v-for="(postGroup, index) in postGroups" :key="index" :class="{ 'carousel-item': true, active: index === 0 }">
             <div class="d-flex justify-content-center">
-              <div class="row">
+              <div class="row ">
                 <div v-for="(post, postIndex) in postGroup" :key="post.id" class="col-md-4 mb-3">
                   <div class="position-relative">
                     <div class="rank-badge">{{ index * 3 + postIndex + 1 }}</div>
@@ -31,6 +33,8 @@
         </button>
       </div>
     </div>
+  </section>
+  </div>
   </template>
   
   <script setup>
@@ -77,9 +81,19 @@
     /* background-color: rgba(245, 225, 7, 0.5); */
     /* padding: 0.25rem 0.5rem; */
     /* border-top-left-radius: 10px; */
-    color : rgb(234, 197, 14);
+    color : rgba(255, 218, 9, 0.842);
     font-size: 3rem;
     font-weight: bold;
+  }
+
+  .title{
+    font-size: 2.5rem;
+    font-family:'WavvePADO';
+  }
+
+  .semititle{
+    font-size: 1.5rem;
+    font-family:'WavvePADO';
   }
   </style>
   

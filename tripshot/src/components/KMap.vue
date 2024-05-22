@@ -1,7 +1,5 @@
 <template>
-
   <KakaoMap :lat="36.34" :lng="127.77" :level="14" :markerCluster="{ markers: markerList }" />
-
 </template>
 
 <script setup>

@@ -10892,17 +10892,18 @@ hr.divider-light {
     box-shadow: none;
     /* background-color: transparent; */
     /* 변경 */
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.0);
+    
   }
   #mainNav .navbar-brand {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.9);
   }
   #mainNav .navbar-brand:hover {
     /* color: #fff; */
     color: black;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     padding: 0 1rem;
   }
   #mainNav .navbar-nav .nav-item .nav-link:hover {
@@ -10931,6 +10932,7 @@ hr.divider-light {
 }
 
 header.masthead {
+
   padding-top: 10rem;
   height: 100vh;
   padding-bottom: calc(10rem - 4.5rem);
@@ -10939,6 +10941,7 @@ header.masthead {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  
 }
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;

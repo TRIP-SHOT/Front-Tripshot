@@ -3,12 +3,11 @@
     <div class="row">
       <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
                   <div class="col-lg-8 text-center">
-                      <h2 class="text-white mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
+                      <h2 class="text-white mt-0 title">❣ MY PICK 인생샷 ❣</h2>
                       <hr class="divider divider-light" />
-                      <p class="text-white-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
+                      <p class="text-white-75 mb-4 semititle">내가 ♥한 게시물 목록</p>
                   </div>
       
-      <a class="btn btn-light btn-xl" style="padding: 1.0rem; margin-bottom: 1rem;" @click="goToUpload">글쓰기</a>
       <div class="col-md-3" v-for="post in displayedPosts" :key="post.id">
         <PostBox :post="post" />
       </div>
@@ -70,21 +69,6 @@ const nextPage = () => {
   }
 };
 
-// 로그인 상태 체크
-const isLoggedIn = () => {
-  return !!localStorage.getItem('token');
-};
-
-// 글쓰기 페이지로 이동
-const goToUpload = () => {
-  if (isLoggedIn()) {
-    router.push('/upload');
-  } else {
-    alert('로그인을 해주세요.');
-    router.push('/login');
-  }
-};
-
 // 게시물 데이터 가져오기
 const getDisplayedPosts = async () => {
   try {
@@ -117,7 +101,7 @@ getDisplayedPosts();
 }
 
 .background{
-      background-image: url('@/assets/background/back3.jpg');
+      background-image: url('@/assets/background/back10.jpg');
       background-size: cover;
       background-position: center;
       width: 100%;

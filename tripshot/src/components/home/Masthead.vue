@@ -50,7 +50,12 @@
   height: 100px; 
   overflow-y: auto; 
   color: white;
+  -ms-overflow-style: none;
 }
+.scroll-container::-webkit-scrollbar{
+  display:none;
+}
+
 
 .scroll-content {
   display: flex;

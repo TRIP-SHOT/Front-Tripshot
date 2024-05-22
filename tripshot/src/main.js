@@ -2,6 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { useAuthStore } from "./stores/auth"
 
 import App from './App.vue'
 import router from './router'
@@ -14,4 +15,8 @@ useKakao(import.meta.env.VITE_KAKAO_MAP_API_KEY, ['clusterer', 'services', 'draw
 const app = createApp(App)
 app.use(createPinia())
 app.use(router)
+
+const authStore = useAuthStore();
+authStore.initializeAuth();
+
 app.mount('#app')
