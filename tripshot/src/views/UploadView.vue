@@ -48,7 +48,7 @@
   <style scoped>
   
 .background {
-  background-image: url('@/assets/background/back6.jpg');
+  background-image: url('@/assets/background/back12.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -59,10 +59,10 @@
   font-size: 1.5rem;
   font-family:'WavvePADO';
 }
-  .row {
-    width: 77.5rem;
-    margin: 0px auto;
-    padding: 5rem 0px 7.5rem;
-  }
+.row {
+  width: 90rem;
+  margin: 0px auto;
+  padding: 5rem 0px 7.5rem;
+}
   </style>
   

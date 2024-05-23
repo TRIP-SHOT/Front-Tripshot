@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div class="bg">
     <div class="row">
       <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
                   <div class="col-lg-8 text-center">
@@ -10,8 +10,10 @@
       </div>
       <label class="custom-file-upload">
         <input type="file" @change="handleFileUpload" accept="image/*" />
-        <span>Choose File</span>
-        <i class="bi bi-file-earmark-plus"></i>
+        <div class = "bi">
+          <img class="bi bi-file-earmark-plus" src="@/assets/img/upload.jpg" />
+        </div>
+        <div>Choose File</div>
       </label>
       <div class="image-box" v-if="imageFile">
         <img :src="imageUrl" alt="Uploaded Image" class="uploaded-image" />
@@ -56,8 +58,8 @@
   
   <style scoped>
 
-.background {
-  background-color: #ccc;
+.bg {
+  background-color: #ffffff;
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -67,6 +69,7 @@
   flex-direction: column;
   font-size: 1.5rem;
   font-family:'WavvePADO';
+  border-radius: 20px;
 }
   .row {
     width: 77.5rem;
@@ -77,6 +80,13 @@
     align-items: center;
   }
   
+  .bi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+  }
+
   .custom-file-upload {
     margin-bottom: 1rem;
     border: 2px solid #ccc;
