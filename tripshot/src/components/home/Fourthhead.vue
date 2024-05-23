@@ -6,7 +6,9 @@
         <h2 class="text-center mt-0 text-white-75 title">🏆 급상승 인증샷 🏆</h2>
         <a class="btn btn-light btn-xl semititle" @click="goToPost">더보기</a>
         <hr class="divider" />
-        <p class="text-black-75 mb-4 text-white-75 semititle">가장 조회수가 높은 인증샷을 확인해보세요!</p>
+        <p class="text-black-75 mb-4 text-white-75 semititle">가장 인기 많은 인증샷을 확인해보세요!</p>
+        <a class="btn btn-light btn-xl semisemititle" @click="hitsort()">조회</a>
+        <a class="btn btn-light btn-xl semisemititle" @click="heartsort()">좋아요</a>
       </div>
       <div id="carouselExampleControls" class="carousel slide col-lg-8" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
@@ -50,16 +52,15 @@
   };
   
   const postGroups = ref([]);
+  const allPosts = ref([]);
 
   // 게시물 데이터 가져오기
   const getDisplayedPosts = async () => {
     try {
       const response = await dataAxios.get('/boards');
       if (response.data.status === 'OK') {
-        const allPosts = response.data.data.sort((a, b) => b.hit - a.hit); // hit 기준으로 내림차순 정렬
-        for (let i = 0; i < allPosts.length; i += 3) {
-          postGroups.value.push(allPosts.slice(i, i + 3));
-        }
+        allPosts.value = response.data.data;
+        sortPostsByHits();
       } else {
         console.error('게시물 데이터를 가져오는 중 오류 발생:', response.data.message);
       }
@@ -67,6 +68,31 @@
       console.error('게시물 데이터를 가져오는 중 오류 발생:', error);
     }
   };
+
+  const sortPostsByHits = () => {
+  const sortedPosts = [...allPosts.value].sort((a, b) => b.hit - a.hit);
+  updatePostGroups(sortedPosts);
+};
+
+const sortPostsByHearts = () => {
+  const sortedPosts = [...allPosts.value].sort((a, b) => b.heart - a.heart);
+  updatePostGroups(sortedPosts);
+};
+
+const updatePostGroups = (sortedPosts) => {
+  postGroups.value = [];
+  for (let i = 0; i < sortedPosts.length; i += 3) {
+    postGroups.value.push(sortedPosts.slice(i, i + 3));
+  }
+};
+
+const hitsort = () => {
+  sortPostsByHits();
+};
+
+const heartsort = () => {
+  sortPostsByHearts();
+};
   
   onMounted(() => {
     getDisplayedPosts();
@@ -94,6 +120,12 @@
   .semititle{
     font-size: 1.5rem;
     font-family:'WavvePADO';
+  }
+
+  .semisemititle{
+    font-size: 1.0rem;
+    font-family:'WavvePADO';
+    margin: 10px;
   }
   </style>
   

@@ -6,7 +6,7 @@
           <div class="col-lg-8 text-center">
             <h2 class="text-white mt-0 title">🏖️ 여행 AI 검색 🏖️</h2>
             <hr class="divider divider-light" />
-            <p class="text-white-75 mb-2 semititle">여행 관련 질문을 무엇이든 검색해보세요!</p>
+            <p class="text-white-75 mb-4 semititle">여행 관련 질문을 무엇이든 검색해보세요!</p>
             <div calss = "flex-container">
               <form class="mb-5" @submit.prevent="fetchAnswer">
                 <div class="mb-3">
