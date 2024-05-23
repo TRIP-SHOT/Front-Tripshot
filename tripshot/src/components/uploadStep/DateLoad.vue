@@ -15,7 +15,8 @@
         <option value="">날씨 선택</option>
         <option value="맑음">맑음</option>
         <option value="흐림">흐림</option>
-        <option value="약간 흐림">약간 흐림</option>
+        <option value="눈">눈</option>
+        <option value="비">비</option>
       </select>
       <button @click="nextStep">다음</button>
     </div>

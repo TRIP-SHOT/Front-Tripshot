@@ -2,16 +2,17 @@
   <div class ="background">
     <div class="row">
       <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
-                      <h2 class="text-black mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
-                      <hr class="divider divider-light" />
-                      <p class="text-black-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
-                  </div>
-                  <div class = "writeframe">
-                    <a class="btn btn-light btn-xl writebtn" @click="goToUpload">글쓰기</a>
-                  </div>
+            <h2 class="text-black mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
+            <hr class="divider divider-light" />
+            <p class="text-black-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
+      </div>
+      <div class = "writeframe">
+        <a class="btn btn-light btn-xl writebtn" @click="goToUpload">글쓰기</a>
+      </div>
       <div class="col-md-3" v-for="post in displayedPosts" :key="post.id">
         <PostBox :post="post" />
       </div>
+      
       <nav aria-label="Page navigation example" class="d-flex justify-content-center">
         <ul class="pagination">
           <li class="page-item" :class="{ disabled: currentPage === 1 }">
@@ -141,11 +142,15 @@ getDisplayedPosts();
 }
 
 .title{
+    display: flex;
+    justify-content: center;
     font-size: 2.5rem;
     font-family:'WavvePADO';
   }
 
 .semititle{
+  display: flex;
+  justify-content: center;
   font-size: 1.5rem;
   font-family:'WavvePADO';
 }

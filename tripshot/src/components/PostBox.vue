@@ -185,7 +185,7 @@ function toggleHeart() {
 }
 
 .bi-heart{
-  color: red;
+  
 }
 
 

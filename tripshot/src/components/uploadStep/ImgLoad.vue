@@ -1,7 +1,12 @@
 <template>
+  <div class="background">
     <div class="row">
-      <div style="margin-bottom: 3rem;">
-        <h2 class="text-center mt-0">내 인생샷을 올려주세요!</h2>
+      <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
+                  <div class="col-lg-8 text-center">
+                      <h2 class="text-black mt-0 title">이미지 업로드</h2>
+                      <hr class="divider divider-light" />
+                      <p class="text-black-75 mb-4 semititle">내 인생샷을 올려주세요!</p>
+                  </div>
       </div>
       <label class="custom-file-upload">
         <input type="file" @change="handleFileUpload" accept="image/*" />
@@ -13,6 +18,7 @@
       </div>
       <a class="btn btn-light btn-xl" @click="nextStep">다음</a>
     </div>
+  </div>
   </template>
   
   <script setup>
@@ -49,6 +55,19 @@
   </script>
   
   <style scoped>
+
+.background {
+  background-color: #ccc;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-family:'WavvePADO';
+}
   .row {
     width: 77.5rem;
     margin: 0 auto;
@@ -87,9 +106,24 @@
   .uploaded-image {
     max-width: 100%;
   }
-  
-  button {
-    margin-top: 1rem;
+  .row {
+  width: 77.5rem;
+  margin: 0px auto;
+  padding: 5rem 0px 7.5rem;
+}
+
+.row > .col-md-3 {
+  margin-bottom: 2rem;
+}
+
+.title{
+    font-size: 2.5rem;
+    font-family:'WavvePADO';
+  }
+
+  .semititle{
+    font-size: 1.5rem;
+    font-family:'WavvePADO';
   }
   </style>
   

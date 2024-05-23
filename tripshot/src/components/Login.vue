@@ -75,7 +75,6 @@ const handleLogin = async () => {
   try {
     await authStore.login(credentials.value);
     router.push('/');
-    // localStorage.setItem('userData', JSON.stringify({ userId, nickName }));
   } catch (error) {
     alert('로그인 실패');
   }

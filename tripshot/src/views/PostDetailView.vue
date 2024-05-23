@@ -1,40 +1,62 @@
 <template>
   <div class="background">
-    <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
-      <h2 class="text-black mt-0 title">🏖️ 인증샷 상세정보 🏖️</h2>
-      <hr class="divider divider-light" />
-      <p class="text-black-75 mb-4 semititle"></p>
-    </div>
-    <div class="writeframe">
-      <a class="btn btn-light btn-xl writebtn" @click="goToUpload">글쓰기</a>
-    </div>
     <!-- 게시글 내용 표시 -->
-    <div v-if="postData" class="mb-3">
-      <!-- Full-width image -->
-      <img :src="postData.image" alt="이미지" class="img-fluid">
-      <div class="row mt-3">
-        <!-- Left column for post information -->
-        <div class="col-md-6">
-          <div class="info-box">
-            <h3>기본 정보</h3>
-            <p>제목: {{ postData.title }}</p>
-            <p>내용: {{ postData.content }}</p>
-            <p>촬영일: {{ postData.shotDate }}</p>
+    <div v-if="postData" class="content">
+      <div class="row">
+        <div class="gx-4 gx-lg-5 justify-content-center align-items-center text-center">
+                    <h2 class="text-black mt-0 realtitle">🏖️ 인증샷 상세 정보 🏖️</h2>
+                    <hr class="divider divider-light" />
+     
+                </div>
+        <div class = "title" style = "display: flex; justify-content: right;">
+          <div style = "margin: 10px;">❤ {{ postData.heartCount }}</div>
+          <div style = "margin: 10px;"> ◽ </div>
+          <div style = "margin: 10px;">조회수 {{ postData.hit }}</div>
           </div>
-          <div class="info-box">
-            <h3>상세 정보</h3>
-            <p>계절: {{ postData.season }}</p>
-            <p>날씨: {{ postData.weather }}</p>
-            <p>상세장소: {{ postData.spot }}</p>
-            <p>장소: {{ postData.locationName }}</p>
-          </div>
+        <div class="img-container">
+            <img :src="postData.image" alt="이미지" class="img-fluid">
         </div>
-        <!-- Right column for additional information -->
+
         <div class="col-md-6">
+          <div class="title">작성자</div>
           <div class="info-box">
-            <h3>통계 정보</h3>
-            <p>좋아요: {{ postData.heartCount }}</p>
-            <p>조회수: {{ postData.hit }}</p>
+            <div>{{postData.nickname}}</div>
+          </div>
+          <div class="title">제목</div>
+          <div class="info-box">
+            <div>{{postData.title}}</div>
+          </div>
+          <div class="title">내용</div>
+          <div class="info-box">
+            <div>{{postData.content}}</div>
+          </div>
+          <div class="title">촬영일</div>
+          <div class="info-box">
+            <div>{{ formatDate(postData.shotDate) }}</div>
+          </div>
+          <div class="title">계절</div>
+          <div class="info-box">
+            <div>{{ postData.season }}</div>
+          </div>
+          <div class="title">날씨</div>
+          <div class="info-box">
+            <div>{{ createemoji(postData.weather) }}</div>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="title">장소</div>
+          <div class="info-box">
+            <div>{{ postData.locationName }}</div>
+          </div>
+          <div class="title">장소 상세 설명</div>
+          <div class="info-box">
+            <div>{{ postData.spot }}</div>
+          </div>
+          <div class = "map-container">
+            <kakao-map :lat="postData.latitude" :lng="postData.longitude" :show-control="true" class = "mapmarker">
+              <KakaoMapMarker :lat="postData.latitude" :lng="postData.longitude" ></KakaoMapMarker>
+            </kakao-map>
           </div>
         </div>
       </div>
@@ -51,10 +73,10 @@
   </div>
 </template>
 
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
 import uploadAxios from "../../utils/uploadAxios";
 import authAxios from "../../utils/authAxios";
 
@@ -83,6 +105,12 @@ const isOwner = (postUserId) => {
   return userData === parseInt(postUserId);
 };
 
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const date = new Date(dateString);
+  return date.toLocaleDateString('ko-KR', options);
+}
+
 function customerDelete() {
   const postId = router.currentRoute.value.params.id;
   authAxios.delete(`/boards`, {
@@ -108,12 +136,25 @@ function customerUpdate(param) {
   });
   router.push("/upload");
 }
-</script>
 
+function createemoji(param) {
+  if (param === "맑음") {
+    return "🌞"; 
+  } else if (param === "흐림") {
+    return "☁";
+  } else if (param === "비") {
+    return "🌧"
+  } else if (param === "눈") {
+    return "❄" 
+  }
+  return "날씨 정보 없음"
+  
+}
+</script>
 
 <style scoped>
 .background {
-  background: #bdbdbd;
+  background-image: url('@/assets/background/back6.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -121,67 +162,73 @@ function customerUpdate(param) {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-size: 1.5rem;
+  font-family:'WavvePADO';
 }
 
-.row {
-  width: 77.5rem;
+.content {
+  background-color: white;
+  width: 90rem;
   margin: 0 auto;
-  padding: 5rem 0 7.5rem;
+  border-radius: 20px;
+  padding: 5rem 7rem 7.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.img-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .img-fluid {
   max-width: 100%;
-  height: auto;
+  height: 600px;
+  border-radius: 10px;
+}
+
+.mapmarker{
+  border-radius: 10px;
 }
 
 .info-box {
-  background-color: #f9f9f9;
+  background-color: #e9e7e7;
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 15px;
   width: 100%;
+  max-height: 200px;
   text-align: center;
+  overflow: scroll;
+  -ms-overflow-style: none;
 }
 
-.info-box h3 {
-  font-size: 1.2rem;
-  font-family: 'WavvePADO', sans-serif;
-  margin-bottom: 10px;
+.info-box::-webkit-scrollbar{
+  display:none;
 }
 
 .info-box p {
   font-size: 1.2rem;
-  font-family: 'WavvePADO', sans-serif;
-  margin-bottom: 5px;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-family: 'WavvePADO';
-  text-align: center;
-}
+.title{
+    font-size: 1.5rem;
+    color:rgb(0, 0, 0);
+    font-family:'WavvePADO';
+  }
 
-.semititle {
-  font-size: 1.5rem;
-  font-family: 'WavvePADO';
-  text-align: center;
-}
-
-.writeframe {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.btn-center {
-  display: flex;
-  justify-content: center;
+.realtitle{
+    font-size: 2.5rem;
+    color:rgb(0, 0, 0);
+    font-family:'WavvePADO';
 }
 
 .btn2 {
-  margin: 0 5px;
+  margin-top: -50px; /* 원하는 만큼 위로 이동 */
+  font-size: 1.2rem; /* 버튼의 글자 크기 조정 */
+  padding: 10px 20px; /* 버튼 내부의 여백 조정 */
 }
-
 </style>
