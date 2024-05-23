@@ -2,17 +2,17 @@
   <div class ="background">
     <div class="row">
       <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
-                  <div class="col-lg-8 text-center">
-                      <h2 class="text-white mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
-                      <hr class="divider divider-light" />
-                      <p class="text-white-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
-                  </div>
+            <h2 class="text-black mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
+            <hr class="divider divider-light" />
+            <p class="text-black-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
       </div>
-      
-      <a class="btn btn-light btn-xl" style="padding: 1.0rem; margin-bottom: 1rem;" @click="goToUpload">글쓰기</a>
+      <div class = "writeframe">
+        <a class="btn btn-light btn-xl writebtn" @click="goToUpload">글쓰기</a>
+      </div>
       <div class="col-md-3" v-for="post in displayedPosts" :key="post.id">
         <PostBox :post="post" />
       </div>
+      
       <nav aria-label="Page navigation example" class="d-flex justify-content-center">
         <ul class="pagination">
           <li class="page-item" :class="{ disabled: currentPage === 1 }">
@@ -116,6 +116,24 @@ getDisplayedPosts();
   margin-bottom: 2rem;
 }
 
+.writebtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8 rem;
+  font-family:'WavvePADO';
+  padding: 1.0rem;
+  
+  width: 300px;
+}
+
+.writeframe{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .background{
       background-image: url('@/assets/background/back3.jpg');
       background-size: cover;
@@ -124,11 +142,15 @@ getDisplayedPosts();
 }
 
 .title{
+    display: flex;
+    justify-content: center;
     font-size: 2.5rem;
     font-family:'WavvePADO';
   }
 
 .semititle{
+  display: flex;
+  justify-content: center;
   font-size: 1.5rem;
   font-family:'WavvePADO';
 }

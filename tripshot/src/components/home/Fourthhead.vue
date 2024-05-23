@@ -3,24 +3,32 @@
     <section class="page-section bg-dark" id="about">
     <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
       <div class="col-lg-8 text-center">
-        <h2 class="text-center mt-0 text-white-75 title">🏆 급상승 인증샷 🏆</h2>
+        <h2 class="text-center mt-0 text-white title">🏆 급상승 인증샷 🏆</h2>
         <a class="btn btn-light btn-xl semititle" @click="goToPost">더보기</a>
         <hr class="divider" />
-        <p class="text-black-75 mb-4 text-white-75 semititle">가장 인기 많은 인증샷을 확인해보세요!</p>
-        <a class="btn btn-light btn-xl semisemititle" @click="hitsort()">조회</a>
-        <a class="btn btn-light btn-xl semisemititle" @click="heartsort()">좋아요</a>
+        <p class="text-black-75 mb-4 text-white semititle">가장 인기 많은 인증샷을 확인해보세요!</p>
+        <a class="btn btn-light btn-xl semisemititle" @click="hitsort()">조회 순</a>
+        <a class="btn btn-light btn-xl semisemititle" @click="heartsort()">좋아요 순</a>
       </div>
       <div id="carouselExampleControls" class="carousel slide col-lg-8" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
           <div v-for="(postGroup, index) in postGroups" :key="index" :class="{ 'carousel-item': true, active: index === 0 }">
             <div class="d-flex justify-content-center">
-              <div class="row ">
-                <div v-for="(post, postIndex) in postGroup" :key="post.id" class="col-md-4 mb-3">
+              <div class="row">
+                <template v-for="(post, postIndex) in postGroup" :key="post.id">
+                <div class="col-md-4 mb-3">
                   <div class="position-relative">
-                    <div class="rank-badge">{{ index * 3 + postIndex + 1 }}</div>
-                    <PostBox :post="post" />
+                  <div class="rank-badge">{{ index * 3 + postIndex + 1 }}</div>
+                  <PostBox :post="post" />
                   </div>
                 </div>
+                </template>
+      <!-- 빈 포스트를 렌더링하여 일정한 배치를 유지합니다. -->
+                <template v-if="postGroup.length < 3">
+                  <div v-for="index in 3 - postGroup.length" :key="'empty' + index" class="col-md-4 mb-3">
+                    <div class="position-relative"></div>
+                  </div>
+                </template>
               </div>
             </div>
           </div>
@@ -40,7 +48,7 @@
   </template>
   
   <script setup>
-  import dataAxios from '../../../utils/dataAxios';
+  import authAxios from "../../../utils/authAxios";
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import PostBox from '../PostBox.vue';
@@ -57,7 +65,7 @@
   // 게시물 데이터 가져오기
   const getDisplayedPosts = async () => {
     try {
-      const response = await dataAxios.get('/boards');
+      const response = await authAxios.get('/boards');
       if (response.data.status === 'OK') {
         allPosts.value = response.data.data;
         sortPostsByHits();

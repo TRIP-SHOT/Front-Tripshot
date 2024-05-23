@@ -112,7 +112,6 @@ const handleUpdate = (event) => {
     });
 };
 
-
 </script>
 
 <style scoped>

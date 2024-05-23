@@ -63,6 +63,8 @@ const router = useRouter();
 const authStore = useAuthStore();
 
 const credentials = ref({ userId: '', password: '' });
+const resetEmail = ref('');
+const newPassword = ref('');
 
 const goToSignup = () => {
   router.push('/signup');

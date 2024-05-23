@@ -1,4 +1,5 @@
 <template>
+   <div class="background">
     <div class="row">
         
       <!-- 1단계: 이미지 업로드 -->
@@ -21,6 +22,7 @@
         <ContentLoad />
       </div>
     </div>
+  </div>
   </template>
   
   <script setup>
@@ -44,10 +46,23 @@
   </script>
   
   <style scoped>
-  .row {
-    width: 77.5rem;
-    margin: 0px auto;
-    padding: 5rem 0px 7.5rem;
-  }
+  
+.background {
+  background-image: url('@/assets/background/back12.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-family:'WavvePADO';
+}
+.row {
+  width: 90rem;
+  margin: 0px auto;
+  padding: 5rem 0px 7.5rem;
+}
   </style>
   
