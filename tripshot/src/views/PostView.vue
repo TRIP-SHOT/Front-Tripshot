@@ -2,14 +2,13 @@
   <div class ="background">
     <div class="row">
       <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
-                  <div class="col-lg-8 text-center">
-                      <h2 class="text-white mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
+                      <h2 class="text-black mt-0 title">🏖️ 인증샷 게시판 🏖️</h2>
                       <hr class="divider divider-light" />
-                      <p class="text-white-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
+                      <p class="text-black-75 mb-4 semititle">내 최고의 순간을 공유해보세요!</p>
                   </div>
-      </div>
-      
-      <a class="btn btn-light btn-xl" style="padding: 1.0rem; margin-bottom: 1rem;" @click="goToUpload">글쓰기</a>
+                  <div class = "writeframe">
+                    <a class="btn btn-light btn-xl writebtn" @click="goToUpload">글쓰기</a>
+                  </div>
       <div class="col-md-3" v-for="post in displayedPosts" :key="post.id">
         <PostBox :post="post" />
       </div>
@@ -113,6 +112,24 @@ getDisplayedPosts();
 }
 
 .row > .col-md-3 {
+  margin-bottom: 2rem;
+}
+
+.writebtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8 rem;
+  font-family:'WavvePADO';
+  padding: 1.0rem;
+  
+  width: 300px;
+}
+
+.writeframe{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 2rem;
 }
 

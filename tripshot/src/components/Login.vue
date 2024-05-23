@@ -63,6 +63,8 @@ const router = useRouter();
 const authStore = useAuthStore();
 
 const credentials = ref({ userId: '', password: '' });
+const resetEmail = ref('');
+const newPassword = ref('');
 
 const goToSignup = () => {
   router.push('/signup');
@@ -73,6 +75,7 @@ const handleLogin = async () => {
   try {
     await authStore.login(credentials.value);
     router.push('/');
+    // localStorage.setItem('userData', JSON.stringify({ userId, nickName }));
   } catch (error) {
     alert('로그인 실패');
   }

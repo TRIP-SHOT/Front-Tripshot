@@ -1,52 +1,50 @@
 <template>
-  <div class="post-box">
-    <!-- Profile -->
+  <!-- 게시글 하트 수 -->
+  <span class="heart-container" @click="toggleHeart">
+            <i class="bi" :class="{'bi-heart': !postState.isLike, 'bi-heart-fill': postState.isLike}"></i>
+            <span class="heart-count">{{ postState.heartCount }}</span>
+  </span>
+  <div class="post-box" @click="goToPostDetail(post.id)">
+    <!-- Profile Box-->
     <div class="profile">
+
       <!-- 사용자 프로필 -->
       <div class="profile-img">
         <template v-if="post.profileImgUrl">
           <img :src="post.profileImgUrl" alt="이미지 정보 없음">
         </template>
         <template v-else>
-          <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
+          <i class="bi bi-person-circle" style="font-size: 2rem;"></i>
         </template>
       </div>
+
       <div class = "profile-info">
-      <!-- 사용자 닉네임 -->
-      <p class="username">{{ post.nickname || '닉네임없음' }}</p>
-      <div class="profile-side">
+        <div class = "profile-info-1">
+          <!-- 사용자 닉네임 -->
+          <div class="username">{{ post.nickname }}</div>
+          <!-- 조회수 -->
+          <div class="hit">조회수 {{ post.hit }}</div>
         
-        <!-- 조회수 -->
-        <p class="hit">{{ post.hit }}</p>
-        
-        <!-- 게시글 하트 수 -->
-        <i class="bi" :class="{'bi-heart': !postState.isLike, 'bi-heart-fill': postState.isLike}" @click="toggleHeart"></i>
-        <p class="heartfill">{{ postState.heartCount }} Likes </p>
-      </div>
-    
-      <div class ="additional-info">
-      <!-- 계절, 날씨 -->
-      <p class="season">{{ post.season || '계절정보없음' }}</p>
-      <p class="weather">{{ post.weather || '날씨정보없음' }}</p>
-      </div>
-      <!-- 촬영 일자 -->
-      <div class="period-details">
-        <p class="shotDate">{{ post.shotDate || '촬영정보없음' }}</p>
-      </div>
+        </div>
+        <div class = "profile-info-2">
+            <!-- 촬영 일자 -->
+            <div class="shotDate">{{ formatDate(post.shotDate) }}</div>
+            <!-- 계절, 날씨 -->
+            <div class="season">{{ post.season}}</div>
+            <div class="weather">{{ post.weather}}</div>
+
+        </div>
       </div>
     </div>
 
     <!-- Travel Period -->
     <div class="travel-period">
-      <div>
+      <div class="img-container">
         <img :src="post.image || './assets/img/noimg.jpg'" alt="이미지없음" class="period-img">
       </div>
     </div>
-    <button class = "more" @click="goToPostDetail(post.id)">
-      더보기
-    </button>
-
   </div>
+      
 </template>
 
 <script setup>
@@ -85,38 +83,72 @@ function toggleHeart() {
         console.error('하트 상태 변경 error:', res);
       });
 
-  }
+}
 
-
+  function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const date = new Date(dateString);
+  return date.toLocaleDateString('ko-KR', options);
+}
 
 </script>
 
 <style scoped>
+
+
+.post-box {
+  display: flex;
+  width: 300px;
+  height: 300px;
+  padding:5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* 프로필 컨테이너 */
 .profile {
   display: flex;
+  font-size: 15px;
+  font-family:'WavvePADO';
 
 }
 
-.profile-side {
+
+/* 프로필 정보 */
+.profile-info {
   display: flex;
-  justify-content: space-between;
-  align-items: top;
+  flex-direction: column;
+  justify-content: center;
 }
+.profile-info-1, .profile-info-2 {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.05em; 
+  word-spacing: 0.1em;
+}
+.profile-info-1{
+  justify-content: space-between;
+}
+
 
 /* 프로필 사진 */
 .profile-img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  margin-right: 15px;
 }
 
-/* 프로필 정보 */
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+
+/* 촬영 일자*/
+.period-details{
 }
 
 .username {
@@ -127,42 +159,107 @@ function toggleHeart() {
 /* 하트 */
 .heartfill{
   display: flex;
-}
-
-/* 날짜와 계절, 날씨 태그 */
-.additional-info {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-/* 이미지 */
-.post-box {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border: 2px solid #ccc;
+  text-align: center;
+}
+
+/* 하트 카운트 */
+.heart-count {
+  font-size: 1rem;
+  color: white;
+  margin-left: 5px;
+  font-size: 15px;
+  font-family:'WavvePADO';
+}
+
+/* 하트 컨테이너 */
+.heart-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bi-heart-fill{
+  color: red;
+}
+
+.bi-heart{
+  color: red;
+}
+
+
+
+
+.season {
+  margin: 5px;
+  background-color: #ee8549;
+  color:white;
+  padding: 7px;
   border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  font-family:'WavvePADO';
+}
+
+.weather {
+  background-color: #1d5bce;
+  color:white;
+  padding: 7px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 5px;
+  font-size: 12px;
+  font-family:'WavvePADO';
+}
+
+.hit{
+  font-size: 10px;
+  font-family:'WavvePADO';
+}
+
+.shotDate{
+  display: flex;
+  text-align: center;
+  font-size: 13px;
+  font-family:'WavvePADO';
 }
 
 /* 이미지 */
 .period-img {
-  width: 100%;
-  height: 200px; /* 이미지 고정 크기 */
-  object-fit: cover; /* 이미지가 공간을 가득 채울 수 있도록 설정 */
-  border-radius: 10px; /* 이미지 모서리를 둥글게 설정 */
+  display: flex;
+  width: 270px;
+  height: 180px;
+  object-fit: cover; 
+  border-radius: 10px; 
+  transition: transform 0.5s ease; 
+}
+
+.img-container {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img-container:hover .period-img {
+  transform: scale(1.2);
 }
 
 .more {
   display: flex;
+  margin-top: 5%;
   width: 30%;
   justify-content: center;
   align-items: center;
   border-radius: 10px; 
+  border: none;
+  font-size: 1.0rem;
+  background-color: #f5f5f5;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+  font-family:'WavvePADO';
+}
+
+.more:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05); /* 호버 시 버튼을 약간 확대 */
 }
 </style>

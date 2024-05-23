@@ -9,13 +9,15 @@ export const useAuthStore = defineStore('auth', {
     async login(credentials) {
       try {
         const response = await authAxios.post('/login', credentials);
+        console.log(response.data);
+        localStorage.setItem('userId', response.data.data.userId);
+        localStorage.setItem('nickName', response.data.data.nickName);
         // 헤더에서 토큰을 추출합니다. 서버에 따라 헤더 이름이 다를 수 있습니다.
         const token = response.headers['Authorization'] || response.headers['authorization'];
         if (token) {
           this.token = token;
           localStorage.setItem('token', this.token);
           authAxios.defaults.headers.common['Authorization'] = `${this.token}`;
-          console.log("여기"+token);
         } else {
           throw new Error('Token not found in response headers');
         }
@@ -26,6 +28,8 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       this.token = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('nickName');
       delete authAxios.defaults.headers.common['Authorization'];
     },
     initializeAuth() {
